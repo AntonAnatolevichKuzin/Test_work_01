@@ -1,6 +1,8 @@
 string[] array = {"if", "for", "else", "{", "<", "while"};
 PrintArray(array);
-SortArray(array);
+string[] sort_array = GetSortArray(array);
+Console.Write(" ->");
+PrintArray(sort_array);
 
 void PrintArray(string[] array)
 {
@@ -13,20 +15,19 @@ void PrintArray(string[] array)
     
  }
 
-void SortArray(string[] array)
+string[] GetSortArray(string[] array)
 {
-    Console.Write("-> [");
     int count = 0;
+    int length = array.Length;
+    string[] res = new string[length];    
     for (int i = 0; i < array.Length; i++)
-    {
-        string temp = array[i];
-        int length = temp.Length;
-        
-        if (length <=2)
+    {       
+        if (array[i].Length <=3)
         {
-            if (count > 0) Console.Write(", ");
-        Console.Write($"{array[i]}"); count++;
-        }
-    }
-    Console.Write("]");
+            res[count] = array[i]; 
+            count++;
+        } 
+    }    
+    Array.Resize(ref res, count);
+    return res;
 }
